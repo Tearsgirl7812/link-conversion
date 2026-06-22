@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - API_HOST=0.0.0.0
+      - API_PORT=5000
+      - FLASK_ENV=production
+    volumes:
+      - ./core:/app/core
+      - ./api:/app/api
+    command: python api/app.py --host 0.0.0.0 --port 5000
+
+  telegram-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
+    volumes:
+      - ./bots:/app/bots
+      - ./core:/app/core
+    command: python bots/telegram_bot.py
+    depends_on:
+      - api
+
+  discord-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+    volumes:
+      - ./bots:/app/bots
+      - ./core:/app/core
+    command: python bots/discord_bot.py
+    depends_on:
+      - api
+
+  web:
+    image: node:18-alpine
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./web:/app
+    working_dir: /app
+    command: npx http-server -p 8000 -o
