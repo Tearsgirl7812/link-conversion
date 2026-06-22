@@ -1,0 +1,25 @@
+# Web Framework
+Flask==2.3.3
+Flask-CORS==4.0.0
+
+# URL Processing
+requests==2.31.0
+urllib3==2.0.5
+
+# Bots
+python-telegram-bot==20.3
+discord.py==2.3.1
+whatsapp-web.py==0.1.0
+
+# Utilities
+python-dotenv==1.0.0
+click==8.1.7
+
+# Testing
+pytest==7.4.2
+pytest-cov==4.1.0
+
+# API
+FastAPI==0.104.1
+uvicorn==0.24.0
+pydantic==2.4.2

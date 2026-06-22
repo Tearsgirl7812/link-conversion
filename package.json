@@ -1,0 +1,28 @@
+{
+  "name": "link-conversion",
+  "version": "1.0.0",
+  "description": "Clean social media links by removing tracking parameters",
+  "main": "desktop/main.js",
+  "homepage": "https://github.com/Tearsgirl7812/link-conversion",
+  "author": "Tearsgirl7812",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron-dev .",
+    "build": "electron-builder",
+    "web": "http-server web -p 8000 -o"
+  },
+  "devDependencies": {
+    "electron": "^27.0.0",
+    "electron-builder": "^24.6.4",
+    "http-server": "^14.1.1"
+  },
+  "build": {
+    "appId": "com.linkconversion.app",
+    "productName": "Link Conversion",
+    "files": [
+      "desktop/**/*",
+      "web/**/*"
+    ]
+  }
+}

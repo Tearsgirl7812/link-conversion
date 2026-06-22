@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="移除社交媒體連結的追蹤參數，保護您的隱私">
+    <meta name="theme-color" content="#4F46E5">
+    <title>🔗 Link Conversion - 連結轉換工具</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">🔗 Link Conversion</h1>
+            <p class="subtitle">移除追蹤參數，保護您的隱私</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Input Section -->
+            <section class="input-section">
+                <div class="input-group">
+                    <textarea
+                        id="inputUrl"
+                        class="input-textarea"
+                        placeholder="貼上您的連結...\n例如:\nhttps://www.instagram.com/p/DZQ_TWrlCRS/?utm_source=ig_web_copy_link"
+                        rows="3"
+                    ></textarea>
+                </div>
+                <div class="button-group">
+                    <button id="convertBtn" class="btn btn-primary" onclick="convertLink()">
+                        🔄 轉換
+                    </button>
+                    <button id="clearBtn" class="btn btn-secondary" onclick="clearAll()">
+                        🗑️ 清除
+                    </button>
+                </div>
+            </section>
+
+            <!-- Result Section -->
+            <section id="resultSection" class="result-section hidden">
+                <div class="result-card">
+                    <div class="result-item">
+                        <label class="result-label">平台</label>
+                        <div class="platform-badge" id="platformBadge"></div>
+                    </div>
+
+                    <div class="result-item">
+                        <label class="result-label">原始連結</label>
+                        <div class="url-box">
+                            <p id="originalUrl" class="url-text"></p>
+                            <button class="btn-icon" onclick="copyUrl('originalUrl')" title="複製原始連結">
+                                📋
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="result-item">
+                        <label class="result-label">轉換後連結</label>
+                        <div class="url-box">
+                            <p id="convertedUrl" class="url-text success"></p>
+                            <button class="btn-icon" onclick="copyUrl('convertedUrl')" title="複製轉換後連結">
+                                📋
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button class="btn btn-success" onclick="copyToClipboard()">
+                            ✅ 複製轉換後連結
+                        </button>
+                        <button class="btn btn-info" onclick="openConverted()">
+                            🔗 在新分頁打開
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Error Section -->
+            <section id="errorSection" class="error-section hidden">
+                <div class="error-card">
+                    <p id="errorMessage" class="error-text"></p>
+                    <button class="btn btn-secondary" onclick="hideError()">
+                        關閉
+                    </button>
+                </div>
+            </section>
+
+            <!-- Statistics -->
+            <section class="stats-section">
+                <div class="stat-item">
+                    <span class="stat-value" id="convertedCount">0</span>
+                    <span class="stat-label">已轉換</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="savedCharsCount">0</span>
+                    <span class="stat-label">節省字符</span>
+                </div>
+            </section>
+        </main>
+
+        <!-- Platform Info -->
+        <section class="info-section">
+            <h2>支持的平台</h2>
+            <div class="platform-list">
+                <div class="platform-item">
+                    <span>🔵 Facebook</span>
+                    <p>移除分享連結參數</p>
+                </div>
+                <div class="platform-item">
+                    <span>📷 Instagram</span>
+                    <p>移除 utm 和追蹤參數</p>
+                </div>
+                <div class="platform-item">
+                    <span>🎥 YouTube</span>
+                    <p>統一為標準格式</p>
+                </div>
+                <div class="platform-item">
+                    <span>💬 Threads</span>
+                    <p>移除追蹤參數</p>
+                </div>
+                <div class="platform-item">
+                    <span>𝕏 X (Twitter)</span>
+                    <p>移除追蹤參數</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>🔒 本工具不收集任何數據，所有轉換均在本地進行</p>
+            <p><a href="https://github.com/Tearsgirl7812/link-conversion" target="_blank">GitHub</a></p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
